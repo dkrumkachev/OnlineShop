@@ -4,6 +4,8 @@ namespace OnlineShop.Services.Order.BusinessLayer.Models.Dto
 {
 	public class OrderDto
 	{
+		public int Id { get; set; }
+
 		public string UserId { get; set; }
 
 		public IEnumerable<string> Products { get; set; }
