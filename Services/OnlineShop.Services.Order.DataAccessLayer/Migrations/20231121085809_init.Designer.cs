@@ -12,8 +12,8 @@ using OnlineShop.Services.Order.DataAccessLayer.Data;
 namespace OnlineShop.Services.Order.DataAccessLayer.Migrations
 {
     [DbContext(typeof(OrderContext))]
-    [Migration("20231121085809_init")]
-    partial class init
+    [Migration("20231116193223_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -26,55 +26,55 @@ namespace OnlineShop.Services.Order.DataAccessLayer.Migrations
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
             modelBuilder.Entity("OnlineShop.Services.Order.DataAccessLayer.Models.OrderModel", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateOnly?>("ActualDeliveryDate")
-                        .HasColumnType("date");
+                b.Property<DateOnly?>("ActualDeliveryDate")
+                    .HasColumnType("date");
 
-                    b.Property<string>("Comment")
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("Comment")
+                    .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("DeliveryAddress")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("DeliveryAddress")
+                    .IsRequired()
+                    .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateOnly>("EstimatedDeliveryDate")
-                        .HasColumnType("date");
+                b.Property<DateOnly>("EstimatedDeliveryDate")
+                    .HasColumnType("date");
 
-                    b.Property<string>("OrderNumber")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("OrderNumber")
+                    .IsRequired()
+                    .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("PhoneNumber")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("PhoneNumber")
+                    .IsRequired()
+                    .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Products")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("Products")
+                    .IsRequired()
+                    .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
+                b.Property<int>("Status")
+                    .HasColumnType("int");
 
-                    b.Property<DateTime>("Timestamp")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime>("Timestamp")
+                    .HasColumnType("datetime2");
 
-                    b.Property<decimal>("Total")
-                        .HasColumnType("decimal(18,2)");
+                b.Property<decimal>("Total")
+                    .HasColumnType("decimal(18,2)");
 
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("UserId")
+                    .IsRequired()
+                    .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.ToTable("Orders");
-                });
+                b.ToTable("Orders");
+            });
 #pragma warning restore 612, 618
         }
     }

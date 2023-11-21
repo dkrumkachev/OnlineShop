@@ -5,6 +5,6 @@ namespace OnlineShop.Services.Order.DataAccessLayer.Data
 {
 	public class OrderContext(DbContextOptions<OrderContext> option) : DbContext(option)
 	{
-		public DbSet<OrderDM> Orders { get; set; }
+		public DbSet<OrderModel> Orders { get; set; }
     }
 }
