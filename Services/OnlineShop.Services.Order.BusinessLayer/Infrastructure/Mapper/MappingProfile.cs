@@ -13,7 +13,11 @@ namespace OnlineShop.Services.Order.BusinessLayer.Infrastructure.Mapper
 				.ForMember(dto => dto.Products, opt =>
 					opt.MapFrom(order => DeserializeProducts(order.Products)));
 
-			CreateMap<OrderCreateDto, OrderDM>()
+            CreateMap<OrderDM, OrderCreatedDto>()
+				.ForMember(dto => dto.Products, opt =>
+					opt.MapFrom(order => DeserializeProducts(order.Products)));
+
+            CreateMap<OrderCreateDto, OrderDM>()
 				.ForMember(order => order.Products, opt =>
 					opt.MapFrom(dto => SerializeProducts(dto.ProductIds)))
 				.AfterMap((dto, order) => order.OrderNumber = order.GenerateOrderNumber());
