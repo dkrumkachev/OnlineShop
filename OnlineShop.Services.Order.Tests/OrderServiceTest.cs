@@ -1,24 +1,18 @@
 using AutoMapper;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using Microsoft.EntityFrameworkCore.Update.Internal;
 using Moq;
 using OnlineShop.Services.Order.BusinessLayer.Exceptions;
 using OnlineShop.Services.Order.BusinessLayer.Infrastructure.Mapper;
 using OnlineShop.Services.Order.BusinessLayer.Models.Dto;
 using OnlineShop.Services.Order.BusinessLayer.Services.Implementations;
-using OnlineShop.Services.Order.BusinessLayer.Services.Interfaces;
 using OnlineShop.Services.Order.DataAccessLayer.Models;
 using OnlineShop.Services.Order.DataAccessLayer.Repositories.Interfaces;
-using System.Diagnostics;
-using System.Runtime.CompilerServices;
-using System.Text.Json;
 
 namespace OnlineShop.Services.Order.Tests
 {
 	public class OrderServiceTest
 	{
 		private readonly IMapper mapper;
-		private OrderModel TestOrder => new()
+		private static OrderModel TestOrder => new()
 		{
 			UserId = "1",
 			Products = "[]",
@@ -27,7 +21,7 @@ namespace OnlineShop.Services.Order.Tests
 			OrderNumber = string.Empty,
 		};
 
-		private OrderCreateDto TestOrderCreateDTO => new()
+		private static OrderCreateDto TestOrderCreateDTO => new()
 		{
 			UserId = "1",
 			ProductIds = new List<string>(),
@@ -35,15 +29,9 @@ namespace OnlineShop.Services.Order.Tests
 			PhoneNumber = string.Empty,
 		};
 
-		private OrderUpdateDto TestOrderUpdateDto => new();
+		private static OrderUpdateDto TestOrderUpdateDto => new();
 
-		public OrderServiceTest()
-		{
-			var mapperConfig = new MapperConfiguration(mc => mc.AddProfile(new MappingProfile()));
-			mapper = mapperConfig.CreateMapper();
-		}
-
-		private List<OrderModel> CreateOrderList(int minElements = 0, int maxElements = 100)
+		private static List<OrderModel> CreateOrderList(int minElements = 0, int maxElements = 100)
 		{
 			var random = new Random();
 			var size = random.Next(minElements, maxElements);
@@ -53,6 +41,12 @@ namespace OnlineShop.Services.Order.Tests
 				list.Add(TestOrder);
 			}
 			return list;
+		}
+
+		public OrderServiceTest()
+		{
+			var mapperConfig = new MapperConfiguration(mc => mc.AddProfile(new MappingProfile()));
+			mapper = mapperConfig.CreateMapper();
 		}
 
 		[Fact]
@@ -71,7 +65,7 @@ namespace OnlineShop.Services.Order.Tests
 			{
 				IsSuccess = true,
 				Result = mapper.Map<OrderDto>(order)
-			};	
+			};
 			Assert.Equivalent(expected, actual, strict: true);
 		}
 
@@ -83,14 +77,14 @@ namespace OnlineShop.Services.Order.Tests
 			var orderService = new OrderService(mock.Object, mapper);
 
 			var act = () => orderService.GetOrderByIdAsync(default);
-	
+
 			await Assert.ThrowsAsync<EntityNotFoundException>(act);
 		}
 
 		[Fact]
 		public async Task GetOrders_ListOfOrders_ReturnResponseDtoPopulatedWithOrderDtos()
 		{
-			var testOrders = CreateOrderList();	
+			var testOrders = CreateOrderList();
 			var mock = new Mock<IOrderRepository>();
 			mock.Setup(repository => repository.GetOrdersAsync())
 				.ReturnsAsync(testOrders);

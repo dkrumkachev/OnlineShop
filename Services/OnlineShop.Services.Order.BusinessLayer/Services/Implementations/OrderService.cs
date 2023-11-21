@@ -53,7 +53,7 @@ namespace OnlineShop.Services.Order.BusinessLayer.Services.Implementations
 			return new ResponseDto
 			{
 				Message = "Successfully created.",
-				Result = mapper.Map<OrderCreatedDto>(order)
+				Result = mapper.Map<OrderDto>(order)
 			};
 		}
 
