@@ -12,8 +12,8 @@ using OnlineShop.Services.Order.DataAccessLayer.Data;
 namespace OnlineShop.Services.Order.DataAccessLayer.Migrations
 {
     [DbContext(typeof(OrderContext))]
-    [Migration("20231116193223_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20231121085809_init")]
+    partial class init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
