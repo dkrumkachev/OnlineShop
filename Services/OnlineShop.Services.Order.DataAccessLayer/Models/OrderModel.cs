@@ -1,6 +1,6 @@
 ﻿namespace OnlineShop.Services.Order.DataAccessLayer.Models
 {
-	public class OrderDM
+	public class OrderModel
 	{
 		public int Id { get; set; }
 

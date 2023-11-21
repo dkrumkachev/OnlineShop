@@ -8,11 +8,21 @@ namespace OnlineShop.Services.Order.BusinessLayer.Infrastructure.Validators
 	{
 		public OrderCreateDtoValidator()
 		{
-			RuleFor(dto => dto.UserId).NotEmpty();
-			RuleForEach(dto => dto.ProductIds).NotEmpty();
-			RuleFor(dto => dto.Total).GreaterThanOrEqualTo(0);
-			RuleFor(dto => dto.PhoneNumber).NotEmpty();
-			RuleFor(dto => dto.DeliveryAddress).NotEmpty();
+			RuleFor(dto => dto.UserId)
+				.NotEmpty()
+				.WithMessage(ValidatorMessage.EmptyUserId);
+			RuleForEach(dto => dto.ProductIds)
+				.NotEmpty()
+				.WithMessage(ValidatorMessage.EmptyProductIds);
+			RuleFor(dto => dto.Total)
+				.GreaterThanOrEqualTo(0)
+				.WithMessage(ValidatorMessage.TotalLessThanZero);
+			RuleFor(dto => dto.PhoneNumber)
+				.NotEmpty()
+				.WithMessage(ValidatorMessage.EmptyPhoneNumber);
+			RuleFor(dto => dto.DeliveryAddress)
+				.NotEmpty()
+				.WithMessage(ValidatorMessage.EmptyDeliveryAddress);
 		}
 	}
 }

@@ -1,5 +1,4 @@
 ﻿using FluentValidation;
-using FluentValidation.Results;
 using OnlineShop.Services.Order.BusinessLayer.Models.Dto;
 
 namespace OnlineShop.Services.Order.BusinessLayer.Infrastructure.Validators
@@ -10,7 +9,8 @@ namespace OnlineShop.Services.Order.BusinessLayer.Infrastructure.Validators
 		{
 			RuleFor(dto => dto.ActualDeliveryDate)
 				.LessThanOrEqualTo(DateOnly.FromDateTime(DateTime.Now))
-				.When(dto => dto.ActualDeliveryDate != null);
+				.When(dto => dto.ActualDeliveryDate != null)
+				.WithMessage(ValidatorMessage.ActualDeliveryDateGreaterThanNow);
 		}
 	}
 }

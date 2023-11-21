@@ -9,20 +9,16 @@ namespace OnlineShop.Services.Order.BusinessLayer.Infrastructure.Mapper
 	{
 		public MappingProfile()
 		{
-			CreateMap<OrderDM, OrderDto>()
+			CreateMap<OrderModel, OrderDto>()
 				.ForMember(dto => dto.Products, opt =>
 					opt.MapFrom(order => DeserializeProducts(order.Products)));
 
-            CreateMap<OrderDM, OrderCreatedDto>()
-				.ForMember(dto => dto.Products, opt =>
-					opt.MapFrom(order => DeserializeProducts(order.Products)));
-
-            CreateMap<OrderCreateDto, OrderDM>()
+			CreateMap<OrderCreateDto, OrderModel>()
 				.ForMember(order => order.Products, opt =>
 					opt.MapFrom(dto => SerializeProducts(dto.ProductIds)))
 				.AfterMap((dto, order) => order.OrderNumber = order.GenerateOrderNumber());
 
-			CreateMap<OrderUpdateDto, OrderDM>();
+			CreateMap<OrderUpdateDto, OrderModel>();
 		}
 
 		private static string SerializeProducts(IEnumerable<string> productIds)
