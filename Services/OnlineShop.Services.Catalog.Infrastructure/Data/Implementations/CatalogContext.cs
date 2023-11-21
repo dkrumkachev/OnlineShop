@@ -5,19 +5,19 @@ using OnlineShop.Services.Catalog.Infrastructure.Data.Interfaces;
 
 namespace OnlineShop.Services.Catalog.Infrastructure.Data.Implementations
 {
-    public class CatalogContext : ICatalogContext
-    {
-        private readonly CatalogDbOptions _catalogDbSettings;
+	public class CatalogContext : ICatalogContext
+	{
+		private readonly CatalogDbOptions _catalogDbSettings;
 
-        public IMongoCollection<Product> Products { get; }
+		public IMongoCollection<Product> Products { get; }
 
-        public CatalogContext(IOptions<CatalogDbOptions> catalogDbSettings)
-        {
-            _catalogDbSettings = catalogDbSettings.Value;
-            var client = new MongoClient(_catalogDbSettings.ConnectionString);
-            var database = client.GetDatabase(_catalogDbSettings.DatabaseName);
-            Products = database.GetCollection<Product>(_catalogDbSettings.CollectionName);
-        }
+		public CatalogContext(IOptions<CatalogDbOptions> catalogDbSettings)
+		{
+			_catalogDbSettings = catalogDbSettings.Value;
+			var client = new MongoClient(_catalogDbSettings.ConnectionString);
+			var database = client.GetDatabase(_catalogDbSettings.DatabaseName);
+			Products = database.GetCollection<Product>(_catalogDbSettings.CollectionName);
+		}
 
-    }
+	}
 }

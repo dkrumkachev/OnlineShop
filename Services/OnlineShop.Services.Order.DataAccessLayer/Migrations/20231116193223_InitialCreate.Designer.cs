@@ -25,7 +25,7 @@ namespace OnlineShop.Services.Order.DataAccessLayer.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("OnlineShop.Services.Order.DataAccessLayer.Models.OrderDM", b =>
+            modelBuilder.Entity("OnlineShop.Services.Order.DataAccessLayer.Models.OrderModel", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()

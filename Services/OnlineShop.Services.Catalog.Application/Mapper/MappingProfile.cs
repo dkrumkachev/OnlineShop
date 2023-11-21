@@ -4,12 +4,12 @@ using OnlineShop.Services.Catalog.Domain.Models.Data;
 
 namespace OnlineShop.Services.Catalog.Application.Mapper
 {
-    public class MappingProfile : Profile
-    {
-        public MappingProfile()
-        {
-            CreateMap<ProductDto, Product>().ReverseMap();
-            CreateMap<NewProductDto, Product>();
-        }
-    }
+	public class MappingProfile : Profile
+	{
+		public MappingProfile()
+		{
+			CreateMap<ProductDto, Product>().ReverseMap();
+			CreateMap<NewProductDto, Product>();
+		}
+	}
 }

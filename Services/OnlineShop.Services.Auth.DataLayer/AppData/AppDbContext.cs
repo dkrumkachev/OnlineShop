@@ -4,17 +4,17 @@ using OnlineShop.Services.Auth.DataLayer.Models.Data;
 
 namespace OnlineShop.Services.Auth.DataLayer.AppData
 {
-    public class AppDbContext : IdentityDbContext<ApplicationUser>
-    {
-        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
-        {
-        }
+	public class AppDbContext : IdentityDbContext<ApplicationUser>
+	{
+		public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
+		{
+		}
 
-        public DbSet<ApplicationUser> Users { get; set; }
+		public DbSet<ApplicationUser> Users { get; set; }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            base.OnModelCreating(modelBuilder);
-        }
-    }
+		protected override void OnModelCreating(ModelBuilder modelBuilder)
+		{
+			base.OnModelCreating(modelBuilder);
+		}
+	}
 }

@@ -4,18 +4,18 @@ namespace OnlineShop.Services.Order.DataAccessLayer.Repositories.Interfaces
 {
 	public interface IOrderRepository
 	{
-		Task<IEnumerable<Models.OrderModel>> GetOrdersAsync();
+		Task<IEnumerable<OrderModel>> GetOrdersAsync();
 
-		Task<Models.OrderModel?> GetOrderByIdAsync(int id);
+		Task<OrderModel?> GetOrderByIdAsync(int id);
 
-		Task<IEnumerable<Models.OrderModel>> GetOrdersByUserAsync(string userId);
+		Task<IEnumerable<OrderModel>> GetOrdersByUserAsync(string userId);
 
-		Task<IEnumerable<Models.OrderModel>> GetOrdersByStatusAsync(OrderStatus status);
+		Task<IEnumerable<OrderModel>> GetOrdersByStatusAsync(OrderStatus status);
 
-		Task CreateOrderAsync(Models.OrderModel order);
+		Task CreateOrderAsync(OrderModel order);
 
-		Task UpdateOrderAsync(Models.OrderModel order);
+		Task UpdateOrderAsync(OrderModel order);
 
-		Task DeleteOrderAsync(Models.OrderModel order);
+		Task DeleteOrderAsync(OrderModel order);
 	}
 }

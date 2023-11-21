@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace OnlineShop.Services.Order.BusinessLayer.Infrastructure.Validators
+﻿namespace OnlineShop.Services.Order.BusinessLayer.Infrastructure.Validators
 {
 	public static class ValidatorMessage
 	{
@@ -13,6 +7,6 @@ namespace OnlineShop.Services.Order.BusinessLayer.Infrastructure.Validators
 		public const string TotalLessThanZero = "Total price of the order must not be less than 0.";
 		public const string EmptyPhoneNumber = "Phone number must be specified.";
 		public const string EmptyDeliveryAddress = "Address must be specified.";
-		public const string ActualDeliveryDateGreaterThanNow  = "Actual delivery date must not be greater than current date.";
+		public const string ActualDeliveryDateGreaterThanNow = "Actual delivery date must not be greater than current date.";
 	}
 }
