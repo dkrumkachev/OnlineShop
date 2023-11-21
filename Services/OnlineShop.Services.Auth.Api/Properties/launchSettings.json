@@ -1,6 +1,6 @@
 {
   "profiles": {
-    "OnlineShop.Services.AuthAPI": {
+    "OnlineShop.Services.Auth.Api": {
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "swagger",

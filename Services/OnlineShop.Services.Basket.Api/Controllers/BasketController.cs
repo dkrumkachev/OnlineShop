@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using OnlineShop.Services.Basket.BusinessLayer.Models.Dto;
 using OnlineShop.Services.Basket.BusinessLayer.Services.Interfaces;
 
-namespace OnlineShop.Serivces.Basket.Api.Controllers
+namespace OnlineShop.Services.Basket.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -42,6 +42,16 @@ namespace OnlineShop.Serivces.Basket.Api.Controllers
         public async Task<IActionResult> DeleteBasketAsync([FromQuery] string userId, CancellationToken cancellationToken)
         {
             var response = await _basketService.DeleteBasketAsync(userId, cancellationToken);
+
+            return Ok(response);
+        }
+
+        [HttpPost("create-order")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> CreateOrderAsync([FromBody] OrderDetailsDto orderDetailsDto, CancellationToken cancellationToken)
+        {
+            var response = await _basketService.CreateOrderAsync(orderDetailsDto, cancellationToken);
 
             return Ok(response);
         }
