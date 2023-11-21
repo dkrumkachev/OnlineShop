@@ -1,5 +1,4 @@
 ﻿using FluentValidation;
-using FluentValidation.Results;
 using OnlineShop.Services.Order.BusinessLayer.Models.Dto;
 
 namespace OnlineShop.Services.Order.BusinessLayer.Infrastructure.Validators

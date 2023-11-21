@@ -48,7 +48,7 @@ namespace OnlineShop.Services.Order.BusinessLayer.Services.Implementations
 
 		public async Task<ResponseDto> CreateOrderAsync(OrderCreateDto orderCreateDto)
 		{
-			var order = mapper.Map<OrderDM>(orderCreateDto);
+			var order = mapper.Map<OrderModel>(orderCreateDto);
 			await orderRepository.CreateOrderAsync(order);
 			return new ResponseDto
 			{
