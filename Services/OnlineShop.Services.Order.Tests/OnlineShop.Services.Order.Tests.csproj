@@ -25,7 +25,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Services\OnlineShop.Services.Order.BusinessLayer\OnlineShop.Services.Order.BusinessLayer.csproj" />
+    <ProjectReference Include="..\OnlineShop.Services.Order.BusinessLayer\OnlineShop.Services.Order.BusinessLayer.csproj" />
+    <ProjectReference Include="..\OnlineShop.Services.Order.DataAccessLayer\OnlineShop.Services.Order.DataAccessLayer.csproj" />
   </ItemGroup>
 
 </Project>

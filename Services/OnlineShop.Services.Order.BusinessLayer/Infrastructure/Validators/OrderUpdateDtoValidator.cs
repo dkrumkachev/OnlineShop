@@ -9,8 +9,7 @@ namespace OnlineShop.Services.Order.BusinessLayer.Infrastructure.Validators
 		{
 			RuleFor(dto => dto.ActualDeliveryDate)
 				.LessThanOrEqualTo(DateOnly.FromDateTime(DateTime.Now))
-				.When(dto => dto.ActualDeliveryDate != null)
-				.WithMessage(ValidatorMessage.ActualDeliveryDateGreaterThanNow);
+				.When(dto => dto.ActualDeliveryDate != null);
 		}
 	}
 }

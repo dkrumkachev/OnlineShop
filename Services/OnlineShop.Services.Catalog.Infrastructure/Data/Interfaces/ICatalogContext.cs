@@ -3,8 +3,8 @@ using OnlineShop.Services.Catalog.Domain.Models.Data;
 
 namespace OnlineShop.Services.Catalog.Infrastructure.Data.Interfaces
 {
-    public interface ICatalogContext
-    {
-        public IMongoCollection<Product> Products { get; }
-    }
+	public interface ICatalogContext
+	{
+		public IMongoCollection<Product> Products { get; }
+	}
 }
