@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using Newtonsoft.Json;
+using OnlineShop.Services.Basket.BusinessLayer.Exceptions;
 using OnlineShop.Services.Basket.BusinessLayer.Models.Dto;
 using OnlineShop.Services.Basket.BusinessLayer.Services.Interfaces;
 using OnlineShop.Services.Basket.DataLayer.Models.Data;
@@ -41,6 +43,46 @@ namespace OnlineShop.Services.Basket.BusinessLayer.Services.Implementations
             await _basketRepository.DeleteBasketAsync(userId, cancellationToken);
 
             return new ResponseDto<object> { Message = "Basket deleted successfully" };
+        }
+
+        public async Task<ResponseDto<object>> CreateOrderAsync(OrderDetailsDto orderDetailsDto, CancellationToken cancellationToken = default)
+        {
+            var basket = await _basketRepository.GetBasketAsync(orderDetailsDto.UserId, cancellationToken);
+
+            if (basket is null)
+            {
+                throw new BasketNotFoundException(orderDetailsDto.UserId);
+            }
+
+            var orderCreateDto = new OrderCreateDto
+            {
+                UserId = basket.UserId,
+                ProductIds = basket.Items.Select(basketItem => basketItem.ProductId).ToArray(),
+                Total = basket.TotalPrice,
+                Comment = orderDetailsDto.Comment,
+                DeliveryAddress = orderDetailsDto.DeliveryAddress,
+                PhoneNumber = orderDetailsDto.PhoneNumber
+            };
+
+            var apiUrl = "https://localhost:7004/api/orders";
+
+            using var httpClient = new HttpClient();
+            
+            var jsonContent = JsonConvert.SerializeObject(orderCreateDto);
+            var httpContent = new StringContent(jsonContent, System.Text.Encoding.UTF8, "application/json");
+
+            var response = await httpClient.PostAsync(apiUrl, httpContent);
+
+            if (response.IsSuccessStatusCode)
+            {
+                var responseBody = await response.Content.ReadAsStringAsync();
+
+                return new ResponseDto<object> { Message = "Order created successfully.", Result = responseBody };
+            }
+            else
+            {
+                throw new OrderCreationException(response.StatusCode.ToString());
+            }            
         }
     }
 }

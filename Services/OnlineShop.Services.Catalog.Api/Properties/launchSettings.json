@@ -1,6 +1,6 @@
 {
   "profiles": {
-    "OnlineShop.Services.CatalogAPI": {
+    "OnlineShop.Services.Catalog.Api": {
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "swagger",
